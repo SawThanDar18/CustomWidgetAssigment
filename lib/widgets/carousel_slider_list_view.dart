@@ -6,7 +6,7 @@ class CarouselSliderListView extends StatelessWidget {
   final ExtendedIndexedWidgetBuilder itemBuilder;
   final double carouselSliderHeight;
 
-  const CarouselSliderListView({Key? key, required this.itemCount, required this.itemBuilder, required this.carouselSliderHeight}) : super(key: key);
+  const CarouselSliderListView({Key? key, required this.itemCount, required this.itemBuilder, required this.carouselSliderHeight,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

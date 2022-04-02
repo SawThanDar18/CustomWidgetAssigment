@@ -10,7 +10,9 @@ import 'package:flutter/material.dart';
 import '../resources/dimens.dart';
 
 class EventCarouselSliderView extends StatelessWidget {
-  const EventCarouselSliderView({Key? key}) : super(key: key);
+  final bool isHomePage;
+
+  const EventCarouselSliderView({Key? key, required this.isHomePage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +21,16 @@ class EventCarouselSliderView extends StatelessWidget {
         itemCount: 10,
         carouselSliderHeight: EVENT_CAROUSEL_SLIDER_HEIGHT,
         itemBuilder: (context, index, pageIndex) {
-          return const EventCarouselSliderItemView();
+          return EventCarouselSliderItemView(isHomePage: isHomePage,);
         },
     );
   }
 }
 
 class EventCarouselSliderItemView extends StatelessWidget {
-  const EventCarouselSliderItemView({
-    Key? key,
-  }) : super(key: key);
+  final bool isHomePage;
+
+  const EventCarouselSliderItemView({Key? key, required this.isHomePage}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,25 +42,28 @@ class EventCarouselSliderItemView extends StatelessWidget {
         ),
         Container(
           width: CAROUSEL_DATA_CONTAINER_WIDTH,
-          color: Colors.black,
           child: Stack(
             children: [
-              const Positioned.fill(
-                child: GradientView(),
+               Positioned.fill(
+                child: (isHomePage == true) ? const GradientView() : Container(color: Colors.white,),
               ),
               Container(
                 margin: const EdgeInsets.only(top: MARGIN_TEN, left: MARGIN_MEDIUM),
                 child: Column(
-                  children: const [
-                    OfficeDetailTextView(),
-                    SizedBox(
+                  children: [
+                    OfficeDetailTextView(
+                      textColor: (isHomePage == true) ? Colors.white : Colors.black,
+                    ),
+                    const SizedBox(
                       height: SIZED_BOX_HEIGHT_6,
                     ),
-                    TimeDetailTextView(),
-                    SizedBox(
+                    TimeDetailTextView(
+                      color: (isHomePage == true) ? Colors.white : Colors.black,
+                    ),
+                    const SizedBox(
                       height: SIZED_BOX_HEIGHT_6,
                     ),
-                    PatientListView(),
+                    const PatientListView(),
                   ],
                 ),
               ),
@@ -122,16 +127,16 @@ class PatientListView extends StatelessWidget {
 }
 
 class OfficeDetailTextView extends StatelessWidget {
-  const OfficeDetailTextView({
-    Key? key,
-  }) : super(key: key);
+  final Color textColor;
+
+  const OfficeDetailTextView({Key? key, required this.textColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: const [
-        WhiteTextView(text: "Office No.248", fontSize: FONT_SIZE_16),
-        WhiteGreyTextView(text: "/ 3 patients", textSize: FONT_SIZE_14),
+      children: [
+        WhiteTextView(text: "Office No.248", fontSize: FONT_SIZE_16, textColor: textColor,),
+        WhiteGreyTextView(text: "/ 3 patients", textSize: FONT_SIZE_14, textColor: textColor,),
       ],
     );
   }

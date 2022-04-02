@@ -44,7 +44,7 @@ class _SchedulePageState extends State<SchedulePage> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               height: SIZED_BOX_HEIGHT_120,
-              child: const EventCarouselSliderView(),
+              child: const EventCarouselSliderView(isHomePage: true,),
             ),
           ),
           Positioned(

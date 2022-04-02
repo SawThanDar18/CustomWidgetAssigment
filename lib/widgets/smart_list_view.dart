@@ -31,6 +31,7 @@ class _SmartListViewState extends State<SmartListView> {
       if (_scrollController.position.atEdge) {
         if (_scrollController.position.pixels == 0) {
           debugPrint('Start of the list reached');
+          widget.onListStart();
         } else {
           debugPrint("End of the list reached");
           widget.onListEndReached();
